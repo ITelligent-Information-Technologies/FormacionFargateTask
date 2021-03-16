@@ -1,0 +1,23 @@
+
+{
+    "region" : "eu-west-1",
+    "profile" : "Formación SIECA",
+    "configuration" : "Release",
+    "tag"           : "formacionfargatetask:latest",
+    "docker-build-working-dir" : "",
+    "task-definition-name"     : "FormacionFargateTask",
+    "task-cpu"                 : "256",
+    "task-memory"              : "512",
+    "task-definition-task-role" : "arn:aws:iam::975026335418:role/practica1",
+    "task-execution-role"       : "ecsTaskExecutionRole",
+    "container-name"            : "FormacionFargateTask",
+    "container-port-mapping"    : "",
+    "container-environment-variables" : "",
+    "cluster"                         : "practica1",
+    "launch-type"                     : "FARGATE",
+    "launch-subnets"                  : "subnet-831004e5,subnet-3da14676,subnet-32f8ae68",
+    "launch-security-groups"          : "sg-4f7a8913",
+    "assign-public-ip"                : true,
+    "task-count"                      : 1,
+    "vstoolkit-deployment-mode"       : "RunTask"
+}
