@@ -7,18 +7,24 @@ namespace FormacionFargateTask
 {
     class Program
     {
-        private static string _NombreBucket = "formacion-fargate-sieca";
-        private static string _KeyFichero = "miPrimerFichero.txt";
 
         static void Main(string[] args)
         {
-            AmazonS3Client S3Client = new AmazonS3Client("AKIA6GBAZF25IMLGHOCW", "6F8UPWedLRqarl3wwwaEmxyozFOWFS3E0azhAoc6");
+            string nombreBucket = "formacion-batch-sieca";
+            string keyFichero = "miPrimerFicheroBatch.txt";
+            if (args.Length == 2)
+            {
+                nombreBucket = args[0];
+                keyFichero = args[1];
+            }
+
+            AmazonS3Client S3Client = new AmazonS3Client();
 
             try
             {
                 S3Client.PutBucketAsync(new PutBucketRequest()
                 {
-                    BucketName = _NombreBucket,
+                    BucketName = nombreBucket,
                     BucketRegion = S3Region.EUW1
                 }).Wait();
             }catch(Exception e)
@@ -30,10 +36,10 @@ namespace FormacionFargateTask
 
             S3Client.PutObjectAsync(new PutObjectRequest()
             {
-                BucketName = _NombreBucket,
+                BucketName = nombreBucket,
                 ContentBody = content,
                 ContentType = "text/html; charset=utf-8",
-                Key =_KeyFichero
+                Key =keyFichero
             }).Wait();
 
             Console.WriteLine("Archivo creado");
